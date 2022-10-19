@@ -213,9 +213,10 @@ void ble_keyboard_powersave(bool save)
 
 /**
  * @brief 初始化键盘所需的各项东西
+ * 这个函数是在main方法里调用的
  * 
  */
-void ble_keyboard_init(void)
+void ble_keyboard_init(void) 
 {
     keyboard_setup(); // 初始化各按键阵列
     // - martix_setup();

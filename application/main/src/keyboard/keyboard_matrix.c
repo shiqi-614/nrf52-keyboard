@@ -269,6 +269,9 @@ void matrix_wakeup_prepare(void)
     }
     for (uint8_t i = 0; i < MATRIX_ROWS; i++) {
         nrf_gpio_cfg_sense_input(row_pin_array[i], NRF_GPIO_PIN_PULLDOWN, NRF_GPIO_PIN_SENSE_HIGH);
+        /* 当系统进入sleep模式（也称system OFF模式），只能通过IO口等特殊唤醒源来唤醒并产生复位。 */
+        /* 当某个IO口使能了sense功能，那么它就可以用来唤醒sleep模式了。Sense使能的时候，可以配置成高电平唤醒或者低电平唤醒。 */
+        /* 一般使用nrf_gpio_cfg_sense_input这个函数来使能IO口的sense功能。 */
     }
 #else
     for (uint8_t i = 0; i < MATRIX_COLS; i++) {
